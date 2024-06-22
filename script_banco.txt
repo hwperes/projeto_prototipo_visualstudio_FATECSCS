@@ -1,0 +1,136 @@
+create database db_signt;
+
+use db_signt;
+
+create table tb_login (
+id_conta int not null primary key,
+usuario varchar (40),
+email varchar (60),
+tipo_usuario varchar (20),
+senha varchar (30),
+status_conta varchar (20));
+
+use db_signt;
+
+create table tb_dados_tec (
+id_atleta int not null primary key,
+nomeAtleta varchar (40),
+idadeAtleta varchar (5),
+CPF varchar (15),
+altura varchar (6),
+peso varchar (6),
+posicao varchar (50),
+habTecnica varchar (1000),
+habFisica varchar (1000),
+avalDesemp varchar (1000),
+foto varchar (255));
+
+use db_signt;
+
+create table tb_cadastro (
+id_atleta int not null primary key,
+Nome varchar (60),
+dataNasc varchar (12),
+CPF varchar (15),
+genero varchar (10),
+cep varchar (12),
+cidade varchar (30),
+endereco varchar (70),
+numero varchar (6),
+bairro varchar (30),
+uf varchar (3),
+fone varchar (21),
+email varchar (50),
+foto varchar (255),
+nomeResp varchar (60),
+grau varchar (15),
+foneResp varchar (21));
+
+use db_signt;
+
+create table tb_ficha_medica (
+id_atleta int not null primary key,
+nomeAtleta varchar (60),
+idadeAtleta varchar (5),
+CPF varchar (15),
+altura varchar (6),
+nomeMae varchar (60),
+peso varchar (6),
+nomePai varchar (60),
+tipoSangue varchar (4),
+coracao varchar (1000),
+medicacao varchar (1000),
+doencas varchar (1000),
+alergiaMedic varchar (1000),
+alergia varchar (1000),
+lesoes varchar (1000),
+condicoes varchar (1000),
+cirurgia varchar (1000));
+
+create table tb_cep (
+CEP VARCHAR(10),
+endereco VARCHAR(255),
+Bairro VARCHAR(255),
+Cidade VARCHAR(255),
+uf VARCHAR(2));
+
+
+Para importar uma planilha de dados de um banco de dados 
+Access para um banco de dados SQL Server, você pode seguir 
+alguns passos. Vamos assumir que a sua planilha de banco de 
+dados Access está em um arquivo .accdb e que você deseja importar 
+todos os CEPs de endereço do Brasil para uma tabela em um banco de dados SQL Server.
+
+Passos para Importar Dados de Access para SQL Server:
+(1)- Preparar o Ambiente:
+
+Certifique-se de que você tem o SQL Server Management Studio (SSMS) instalado.
+Verifique se você tem o Microsoft Access Database Engine instalado, pois ele é necessário para acessar dados de arquivos Access.
+
+(2)- Criar a Tabela no SQL Server:
+
+Primeiro, você precisa criar uma tabela no SQL Server onde os dados do Access serão importados.
+sql
+Copiar código
+CREATE TABLE tb_ceps (
+    ID INT IDENTITY(1,1) PRIMARY KEY,
+    CEP VARCHAR(10),
+    Logradouro VARCHAR(255),
+    Bairro VARCHAR(255),
+    Cidade VARCHAR(255),
+    Estado VARCHAR(2)
+);
+Ajuste a estrutura da tabela conforme necessário para corresponder aos dados na sua planilha Access.
+
+(3)- Usar o Import and Export Wizard do SQL Server:
+
+Abra o SQL Server Management Studio (SSMS).
+Conecte-se ao seu banco de dados.
+No Object Explorer, clique com o botão direito no banco de dados de destino e selecione Tasks -> Import Data....
+O SQL Server Import and Export Wizard será aberto.
+
+(4)- Configurar a Origem de Dados:
+
+Na janela do assistente, selecione Microsoft Access como o tipo de origem de dados.
+Navegue até o seu arquivo .accdb e selecione-o.
+Teste a conexão para garantir que o Access Database Engine está funcionando corretamente.
+
+(5)- Configurar o Destino de Dados:
+
+Selecione SQL Server Native Client como o tipo de destino de dados.
+Configure a conexão com o seu banco de dados SQL Server.
+
+(6)- Especificar as Tabelas de Origem e Destino:
+
+O assistente permitirá que você selecione a(s) tabela(s) ou consulta(s) de origem no arquivo Access.
+Mapeie essas tabelas de origem para a tabela de destino criada no SQL Server.
+
+(7) -Executar o Processo de Importação:
+
+Siga as etapas restantes no assistente para completar o processo de importação.
+Revise as configurações e execute o processo.
+O assistente mostrará um resumo e você poderá monitorar o progresso da importação.
+
+(8)- Verificar os Dados Importados:
+
+Após a importação, verifique os dados no SQL Server para garantir que foram importados corretamente.
